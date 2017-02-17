@@ -1,0 +1,19 @@
+echos 0.8 0.7 700.0 0.25 900.0 0.3 echos 0.8 0.7 700.0 0.25 900.0 0.3 echos 0.8 0.7 700.0 0.25 900.0 0.3 phaser 0.89 0.85 1.0 0.24 2.0 -t
+phaser 0.89 0.85 1.0 0.24 2.0 -t
+bend .35,180,.25
+allpass 10 1
+allpass 100 10
+bandreject 10 0.1
+bass -20
+bass +20
+treble -20
+treble +20
+treble -20 bass +20
+treble +20 bass -20
+downsample
+gain 100
+gain 100 bass +20
+pitch 7
+silence 1 5 10
+sinc -4k
+vol 0.01 amplitude treble +20

@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+INFILE=$1
+EFFECT=${@:2}
+
+header=$(mktemp)
+tmpfile=$(mktemp)
+
+outfile=$(basename $INFILE .png)_warped_$(uuidgen | awk -F- '{print $1}').png
+
+< $INFILE imagefile/png2if | ./ifstream -e $header \
+    | sox -r 44100 -b 16 -c 1 -e signed -t raw - \
+	  -r 44100 -b 16 -c 1 -e signed -t raw $tmpfile $EFFECT
+
+< $tmpfile ./ifstream -p $header | ./imagefile/if2png > $outfile
+
+echo "created $outfile"
+
+rm $header $tmpfile
